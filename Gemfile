@@ -52,6 +52,8 @@ gem 'shrine', '~> 3.4'
 
 gem 'image_processing', '~> 1.12', '>= 1.12.2'
 
+gem 'devise', '~> 4.8', '>= 4.8.1'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
