@@ -1,0 +1,19 @@
+<%= render "expenses/header" %>
+
+<section class="categories">
+ <div class="splash__data">
+  <%= form_with model: @expense, url: group_expense_path(group_id: @group.id, id: @expense.id), local: true do |f| %>
+    <%= f.text_field :name, autofocus: true, class: "splash__input box" %>
+    <%= f.number_field :amount, autofocus: true, class: "splash__input box" %>
+    
+    <div class="form_btn">
+      <%= f.submit "Update Bill", class: 'btn primary_btn btn_txt' %>
+    </div>
+
+  <% end %>
+  </div>
+</section>
+
+<div class="new_item">
+  <%= link_to "Back", group_expense_path(group_id: @group.id, id: @expense.id), class: "btn secondary_btn btn_txt" %>
+</div>

@@ -1,26 +1,26 @@
-<h2>Log in</h2>
+<div class="splash splash__logo">
+  <div class="logo splash__logo">BillTracker</div>
+</div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="splash">
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'splash__form'}) do |f| %>
+
+  <div class="splash__data">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "splash__input box" %>
+    <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", class: "splash__input box" %>
+    <!-- <% if devise_mapping.rememberable? %>
+      <div class="field">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end %> -->
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  <div class="splash__btns">
+    <%= f.submit "Log in", class: "btn primary_btn btn_txt"  %>
   </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
 <% end %>
+</div>
 
 <%= render "devise/shared/links" %>

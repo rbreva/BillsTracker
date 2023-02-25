@@ -1,0 +1,55 @@
+<%= render "groups/header" %>
+<div class="categories"> 
+ <% if @groups.any?  %>
+  
+    <div class="width_desk">
+
+      <% @groups.each do |group| %>
+
+      <div class="category">
+
+        <div class="category__data">
+          <a href=<%= group_expenses_path(group_id: group.id) %>>
+            <%= image_tag(group.icon.attached? ? group.icon : 'store-icon.jpg') %>
+            <div>
+              <h2><%= group.name %></h2>
+              <% if Time.now - group.created_at <= 1.minute %>
+                <p class="category__time"><%= time_ago_in_words(group.created_at, include_seconds: true) %> ago</p>
+              <% elsif Time.now - group.created_at <= 24.hours %>
+                <p class="category__time"><%= time_ago_in_words(group.created_at) %> ago</p>
+              <% else %>
+                <p class="category__time"><%= group.created_at.strftime('%b %d, %Y') %></p>
+              <% end %>
+            </div>
+          </a>
+        </div>
+
+        <div class="category__bill">
+          <div class="btn_list">
+            <button class="category__addbill"><%= link_to 'Detail', group_path(id: group.id) %> </button>
+            <button class="category__addbill"><%= link_to 'Add Bill', group_expenses_path(group_id: group.id) %> </button>  
+          </div>
+          <div class="total_cat" >$<%= group.expenses.sum(:amount) %></div>
+        </div>
+      </div>
+
+      <% end %>
+
+    </div>
+
+  
+
+  <% else %>
+  <div class="flash-notice">Currently, you have no categories. Add a new category to record expenses</div>
+  <% end %>
+
+</div>
+
+  <div class="new_item">
+      <%= link_to 'New Category', new_group_path, class: "btn secondary_btn btn_txt" %>
+  </div>
+
+
+
+
+

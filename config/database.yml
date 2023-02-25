@@ -1,22 +1,21 @@
+
 default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV["DB_USERNAME"] %>
-  host: <%= ENV["DB_HOST"] %>
-  password: <%= ENV["DB_PASSWORD"] %>
-  port: <%= ENV["DB_PORT"] %>
+  host: localhost
+  port: 5432
+  username: postgres
+  password: maia2015
 
 development:
   <<: *default
-  database: BillsTracker_development
+  database: Budget_App_development
 
 test:
   <<: *default
-  database: BillsTracker_test
+  database: Budget_App_test
 
 production:
   <<: *default
-  database: BillsTracker_production
-  username: BillsTracker
-  password: <%= ENV["BILLSTRACKER_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>

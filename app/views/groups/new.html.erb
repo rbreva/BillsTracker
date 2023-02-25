@@ -1,0 +1,16 @@
+<%= render "groups/header" %>
+<section class="categories">
+  <div class="splash__data">
+  <%= form_with model: @group, url: groups_path, local: true, class: "form_gen" do |f| %>
+    <%= f.text_field :name, autofocus: true, placeholder: "Group name", class: "splash__input box" %>
+    <%= f.file_field :icon, class: "splash__input box" %>
+    <div class="form_btn">
+      <%= f.submit "Create new Category", class: "btn primary_btn btn_txt" %>
+    </div>
+  <% end %>
+  </div>
+</section>
+
+<div class="new_item">
+  <%= link_to 'Back', groups_path, class: "btn secondary_btn btn_txt" %>
+</div>
