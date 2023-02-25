@@ -66,7 +66,7 @@ The mobile web application **BillTracker App** where you can manage your budget:
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Budget App](https://billstracker-production.up.railway.app/)
+- [BillTracker App](https://billstracker-production.up.railway.app/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
