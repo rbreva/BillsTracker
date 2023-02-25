@@ -1,0 +1,21 @@
+<%= render "expenses/header" %>
+
+<section class="width_desk">
+
+  <div class="categories">
+
+    <div class="category__select">
+    <h2><%= @expense.name %></h2>
+    </div>
+
+    <div class="total_expense">TOTAL EXPENSE: $<%= @expense.amount %></div>
+    
+    <div class="btn_gen">
+      <button class="btn_gen_edit"><%= link_to "Edit", edit_group_expense_path(group_id: @group.id, id: @expense.id) %></button>
+      <button class="btn_gen_edit"><%= link_to "Back", group_expenses_path(group_id: @group.id) %></button>
+      <%= button_to "Delete", @group_expense, method: :delete, class: 'btn_gen_edit alert' %>
+    </div>
+
+  </div>
+
+</section>

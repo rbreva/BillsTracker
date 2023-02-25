@@ -1,0 +1,55 @@
+<%= render "expenses/header" %>
+
+<section class="width_desk">
+  <div class="categories">
+
+    <div class="category__select">
+      <div>
+        <div class="header_name">
+          <% if @group.icon.attached?%>
+            <%= image_tag(@group.icon) %>
+          <%else%>
+            <%= image_tag('store-icon.jpg') %>
+          <%end%>
+          <h2><%= @group.name %></h2>
+        </div>
+        <div class="total_expense_all">$ <%= @group.expenses.sum(:amount) %></div>
+      </div>
+      <p class="bills_qty">Currently, the <%= @group.name %> group have following <%= @group_expenses.count %> bills </p>
+      <button class="btn_gen_edit"><%= link_to 'Back', groups_path %></button>
+    </div>
+    
+    <% if @expenses.any? %>
+      <div>
+        <% @group_expenses.each_with_index do |group_expense, index| %>
+          <div class="bills">
+            <div class="bills__list">
+              <div class="bills__list__num"><%= "#{index + 1})" %></div>
+              <div class="bills__list__desc">
+                <div class="bills__list__desc__title"><%= group_expense.expense.name %></div>
+                <% if Time.now - group_expense.created_at <= 1.minute %>
+                  <div class="bills__time"><%= time_ago_in_words(group_expense.created_at, include_seconds: true) %> ago</div>
+                <% elsif Time.now - group_expense.created_at <= 24.hours %>
+                  <div class="bills__time"><%= time_ago_in_words(group_expense.created_at) %> ago</div>
+                <% else %>
+                  <div class="bills__time"><%= group_expense.created_at.strftime('%b %d, %Y') %></div>
+                <% end %>
+              </div>
+              <div class="bill_amount">$ <%= group_expense.expense.amount %></div>
+              <div class="bill_option">
+                <button class="bill_btn"><%= link_to 'Detail', group_expense_path(group_id: @group.id, id: group_expense.expense_id) %> </button>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="flash-notice">No expense present for this group</p>
+    <% end %>
+  </div>
+
+</section>
+
+<div class="new_item">
+  <%= link_to 'add new bill', new_group_expense_path(group_id: @group.id), class: "btn secondary_btn btn_txt" %>
+</div>

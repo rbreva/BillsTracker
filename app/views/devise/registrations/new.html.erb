@@ -1,29 +1,26 @@
-<h2>Sign up</h2>
+<div class="splash splash__logo">
+  <div class="logo splash__logo">BillTracker</div>
+</div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
+<div class="splash">
+<%= form_for(resource, as: resource_name, data: {turbo: false}, url: registration_path(resource_name), :html => {:class => 'splash__form'} ) do |f| %>
+    
+  <div class="splash__data">
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "Full name", class: "splash__input box" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "splash__input box" %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% @minimum_password_length %>
+    <% end %>
+    <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password", class: "splash__input box" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm password", class: "splash__input box" %>
+    <%= render "devise/shared/error_messages", resource: resource %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="splash__btns">
+    <%= f.submit "Sign up", class: "btn primary_btn btn_txt"  %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
 <% end %>
+</div>
 
 <%= render "devise/shared/links" %>

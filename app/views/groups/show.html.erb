@@ -1,0 +1,21 @@
+<section class="width_desk">
+  
+  <div class="categories">
+    <div class="category__select">
+      <% if @group.icon.attached?%>
+        <%= image_tag(@group.icon) %>
+      <%else%>
+        <%= image_tag('store-icon.jpg') %>
+      <%end%>
+      <h2><%= @group.name %></h2>
+    </div>
+
+    <div class="total_expense"><span>TOTAL EXPENSE: $<%= @group.expenses.sum(:amount) %></span></div>
+    <div class="btn_gen">
+      <button class="btn_gen_edit"><%= link_to "Edit", edit_group_path(@group) %></button>
+      <button class="btn_gen_edit"><%= link_to "Back", groups_path %></button>
+      <%= button_to "Delete", @group, method: :delete, class: 'btn_gen_edit alert' %>
+    </div>
+  </div>
+
+</section>
