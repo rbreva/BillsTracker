@@ -1,13 +1,22 @@
-<div class="resend_instruction">
+<div class="splash splash__logo">
+  <div class="logo splash__logo">BillTracker</div>
+</div>
+
+<div class="splash">
   <%= form_for(resource, as: resource_name, data: {turbo: false}, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-    <div class="top_bar">
-      <%= render partial: 'shared/back', locals: { title: 'CONFIRMATION EMAIL', back_path: root_path } %>
-      <%= f.submit "Resend", { class: "actions"} %>
+    
+    <div class="splash__data">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), placeholder: "Email", class: "splash__input box" %>
+      <%= render "devise/shared/error_messages", resource: resource %>
     </div>
 
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), placeholder: "Email", class: "resend_input" %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="splash__btns">
+
+      <%= f.submit "Resend", { class: "btn primary_btn btn_txt"} %>
+    </div>
+
   <% end %>
 
-  <%= render "devise/shared/links" %>
 </div>
+
+<%= render "devise/shared/links" %>
